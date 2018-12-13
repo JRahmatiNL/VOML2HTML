@@ -68,8 +68,7 @@ function UpdateUI()
                 descriptionStyleSizeText
             );
             htmlResult += (
-                '<div id="'+controlName+'" style="' + controlStyleText + '" />' + controlsTextValue + '</div>' +
-                '<div id="'+controlName+'Description" style="' + controlDescriptionStyleText + '" />' + controlName + '</div>'
+                '<div id="'+controlName+'" title="'+controlName+'" style="' + controlStyleText + '" />' + controlsTextValue + '</div>'
             );
         }
     }
