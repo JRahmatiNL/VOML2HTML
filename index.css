@@ -4,5 +4,7 @@
     position: absolute;
     font-size: 8pt;
     border-style:solid;
-    background-color:silver;
+    border-width: 1px;
+    margin: 0;
+    padding: 0;
 }

@@ -21,24 +21,47 @@ function UpdateUI()
         const element = textParts[index];
         uiPanel.innerHTML += GetHtml4VOResouce(element);
     }
+    MapVOClassesToJQueryUIControls();
 }
 
 function GetHtml4VOResouce(element)
 {
-    var myRegex = /\s*CONTROL\s"(.*?)",\s*(\w+),.*?(\d+), (\d+), (\d+), (\d+)/;
+    var myRegex = /\s*CONTROL\s"(.*?)",\s*(\w+), "(.*?)", .*?(\d+), (\d+), (\d+), (\d+)/;
     var groupValues = myRegex.exec(element);
     if(groupValues == null) return "";
     
     var groupIndex = 1;
     var controlsTextValue = groupValues[groupIndex++];
     var controlName = groupValues[groupIndex++];
+    var controlClass = groupValues[groupIndex++];
     var controlStyleText = ([
         `left: ${groupValues[groupIndex++]}px`, `top: ${groupValues[groupIndex++]}px`,
         `width: ${groupValues[groupIndex++]}px`, `height: ${groupValues[groupIndex++]}px`,
     ].join(";"));
     var controlAttributes = [
         `id="${controlName}"`, `title="${controlName}"`,
-        `class="vocontrol" style="${controlStyleText}"`
+        `class="vocontrol ${controlClass}" style="${controlStyleText}"`
     ].join(" ");
-    return (`<div ${controlAttributes} />${controlsTextValue}</div>`);
+    return (
+        `<div ${controlAttributes}>${controlsTextValue}</div>`
+    );
+}
+
+function MapVOClassesToJQueryUIControls()
+{
+    $(".vocontrol.edit").html(`<input style="width:100%;height:100%" />`);
+    $(".vocontrol.button").button();
+    $(".vocontrol.msctls_progress32").progressbar({value: 37});
+    $(".vocontrol.SysListView32").html([
+        `<div class="ui-widget-content">Listview</div>`,
+        `<div class="ui-widget-content">Items</div>`
+    ].join(""));
+    $(".vocontrol.ComboBox").html(
+        `<select style="display:inline-block;"><option>item1</option><option>item2</option></select>`
+    );
+    $(".vocontrol.ComboBox select").selectmenu();
+    $.each($('select'), function () {
+        $(this).selectmenu({ width : $(this).width()})
+    });
+    $(".vocontrol.SysListView32").selectable();
 }
