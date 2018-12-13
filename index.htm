@@ -1,25 +1,31 @@
 <html>
     <meta charset="UTF-8" />
+    <link href="jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet">
+    <script src="jquery.js"></script>
+    <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <link href="index.css" rel="stylesheet">
     <body>
         <div style="border-style:solid;border-color:red;position: absolute;left:0;width:47%;height: 100%;font-family: 'Courier New', Courier, monospace;padding: 0px;margin: 0px;">
             <textarea id="codeArea" style="width:100%;height: 100%;font-size: 8pt;margin:0px;padding:0px;"
-            onkeydown="UpdateUI()">
-            STYLE	DS_3DLOOK|DS_MODALFRAME|WS_POPUP|WS_CAPTION|WS_SYSMENU
-            CAPTION	"Index Database"
-            FONT	8, "MS Shell Dlg"
-            BEGIN
-                CONTROL	"", PROGDIAL_PROGRESSBAR3, "msctls_progress32", PBS_SMOOTH|WS_CHILD, 14, 175, 244, 17
-                CONTROL	"", PROGDIAL_PROGRESSBAR4, "msctls_progress32", PBS_SMOOTH|PBS_VERTICAL|WS_CHILD, 268, 20, 24, 175
-                CONTROL	"", PROGDIAL_PROGRESSBAR1, "msctls_progress32", WS_CHILD, 14, 20, 244, 17
-                CONTROL	"Start Index", PROGDIAL_PBSTART, "Button", WS_TABSTOP|WS_CHILD, 304, 27, 53, 14
-                CONTROL	"Abort Index", PROGDIAL_PBSTOP, "Button", WS_TABSTOP|WS_CHILD, 304, 59, 53, 14
-                CONTROL	"", PROGDIAL_PROGRESSBAR2, "msctls_progress32", WS_CHILD, 14, 97, 244, 18
-            END
-            </textarea>
+            onkeyup="UpdateUI()" onchange="UpdateUI()">
+STYLE	WS_CHILD
+FONT	8, "MS Shell Dlg"
+BEGIN
+    CONTROL	"Timeout in ms: ", _FRMPING_FIXEDTEXT4, "Static", WS_CHILD, 1, 38, 78, 12, WS_EX_RIGHT
+    CONTROL	"Enter IP Address: ", _FRMPING_FIXEDTEXT1, "Static", WS_CHILD, 1, 23, 78, 12, WS_EX_RIGHT
+    CONTROL	"Returned Information:", _FRMPING_FIXEDTEXT2, "Static", WS_CHILD, 2, 56, 100, 12
+    CONTROL	"Local Machine:", _FRMPING_FIXEDTEXT3, "Static", WS_CHILD, 1, 9, 78, 12, WS_EX_RIGHT
+    CONTROL	"", _FRMPING_SLECIP, "Edit", ES_AUTOHSCROLL|WS_TABSTOP|WS_CHILD|WS_BORDER, 82, 22, 115, 13, WS_EX_CLIENTEDGE
+    CONTROL	"", _FRMPING_SLENTIMEOUT, "Edit", ES_AUTOHSCROLL|WS_TABSTOP|WS_CHILD|WS_BORDER, 82, 38, 31, 12, WS_EX_CLIENTEDGE
+    CONTROL	"", _FRMPING_SLECMACHINENAME, "Edit", ES_AUTOHSCROLL|WS_CHILD|WS_BORDER, 82, 8, 115, 12, WS_EX_CLIENTEDGE
+    CONTROL	"Ping", _FRMPING_PBPING, "Button", BS_DEFPUSHBUTTON|WS_TABSTOP|WS_CHILD, 220, 6, 54, 15
+    CONTROL	"Close", _FRMPING_PBCANCEL, "Button", WS_TABSTOP|WS_CHILD, 220, 30, 54, 16
+    CONTROL	"", _FRMPING_MLECRETURNINFO, "Edit", ES_WANTRETURN|ES_AUTOHSCROLL|ES_AUTOVSCROLL|ES_MULTILINE|WS_CHILD|WS_BORDER|WS_VSCROLL, 1, 70, 275, 125, WS_EX_CLIENTEDGE
+    CONTROL	"Continuous Ping", _FRMPING_CBKEEPPINGING, "Button", BS_AUTOCHECKBOX|WS_TABSTOP|WS_CHILD, 115, 38, 80, 11
+END
+        </textarea>
         </div>
         <div id="UIPanel" style="border-style:solid;border-color:blue;position: absolute;left:48%;right:0;height: 100%;margin: 0px;">
-            <input type="button" style="margin-left: 10px;width: 120px;" value="test" />
         </div>
     </body>
     <script src="index.js"></script>
